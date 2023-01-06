@@ -34,7 +34,7 @@ def callback(request):
             if isinstance(event, MessageEvent):  # 如果有訊息事件
                 line_bot_api.reply_message(  # 回復傳入的訊息文字
                     event.reply_token,
-                    TextSendMessage(text='哈哈哈哈哈')
+                    TextSendMessage(text='哈哈哈哈')
                 )
         return HttpResponse()
     else:
