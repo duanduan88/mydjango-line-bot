@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-q@_&ph+tl_n+#(@ncx7m^6*#-&-^g+)0gge)%j()x#3=^4!y%@
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '9faf-2407-4d00-2c04-8675-f0b9-d7fc-40de-3f95.jp.ngrok.io'
+    'line-bot-service.onrender.com'
 ]
 
 LINE_CHANNEL_ACCESS_TOKEN = 'SgHN7Et5+RrfeOf34PQdRaejyKeE87ZeqmEal82HoeYayv95AUg1GXUbHj0ZYvaGsXnhZzm3u9XstJ6tUzeaExV7Qa0HDqIYlGa9zMMd9uGl2joK+LleCigxDYyO14RGObj2BrbAvlDKg4XWpjAMtQdB04t89/1O/w1cDnyilFU='
@@ -123,6 +123,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
+
+# to settings.py. Where STATIC_ROOT is the destination to where static files are copied and from where they are served when deploying the Django app.
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
