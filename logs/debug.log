@@ -111,3 +111,12 @@ linebot.exceptions.LineBotApiError: LineBotApiError: status_code=400, request_id
 [INFO][2023-01-06 22:32:22][views]: Run callback function
 [INFO][2023-01-06 22:32:22][views]: {"destination":"Ubf309e7f0fadd9d6dadad2e394ec8f2b","events":[{"type":"message","message":{"type":"text","id":"17426168449201","text":"123"},"webhookEventId":"01GP3QYEZ5AKDH49FDNE5B46G0","deliveryContext":{"isRedelivery":false},"timestamp":1673015540555,"source":{"type":"user","userId":"U7148e10040a000482dbeb37e7609dee4"},"replyToken":"de11c77f5db7456d812def7214c49565","mode":"active"}]}
 [INFO][2023-01-06 22:32:22][basehttp]: "POST /weather/callback HTTP/1.1" 200 0
+[INFO][2023-01-06 22:55:47][autoreload]: Watching for file changes with StatReloader
+[INFO][2023-01-06 22:55:53][views]: Run callback function
+[INFO][2023-01-06 22:55:53][views]: {"destination":"Ubf309e7f0fadd9d6dadad2e394ec8f2b","events":[{"type":"message","message":{"type":"text","id":"17426271184566","text":"123"},"webhookEventId":"01GP3S9GX2X6NDF4S8S00GCKP2","deliveryContext":{"isRedelivery":false},"timestamp":1673016951621,"source":{"type":"user","userId":"U7148e10040a000482dbeb37e7609dee4"},"replyToken":"79f1cb1f44a74d81a2d156fbe3f276d7","mode":"active"}]}
+[INFO][2023-01-06 22:55:53][basehttp]: "POST /weather/callback HTTP/1.1" 200 0
+[INFO][2023-01-06 22:57:17][autoreload]: C:\Users\Duan\mydjango\weather\views.py changed, reloading.
+[INFO][2023-01-06 22:57:17][autoreload]: Watching for file changes with StatReloader
+[INFO][2023-01-06 22:57:21][views]: Run callback function
+[INFO][2023-01-06 22:57:21][views]: {"destination":"Ubf309e7f0fadd9d6dadad2e394ec8f2b","events":[{"type":"message","message":{"type":"text","id":"17426277422822","text":"123"},"webhookEventId":"01GP3SC7FDN4FEAVQMVTHXBRY5","deliveryContext":{"isRedelivery":false},"timestamp":1673017040092,"source":{"type":"user","userId":"U7148e10040a000482dbeb37e7609dee4"},"replyToken":"1ac7225325e84c0b84b3e15b1cc18111","mode":"active"}]}
+[INFO][2023-01-06 22:57:22][basehttp]: "POST /weather/callback HTTP/1.1" 200 0

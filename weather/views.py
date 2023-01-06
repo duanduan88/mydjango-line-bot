@@ -75,7 +75,7 @@ TemplateSendMessage(
 buttons_template_message = TemplateSendMessage(
     alt_text='Buttons template',
     template=ButtonsTemplate(
-        thumbnail_image_url='https://github.com/duanduan88/mydjango-line-bot/blob/master/weather/photo/thumbnail_image_1.jpg',
+        thumbnail_image_url='https://raw.githubusercontent.com/duanduan88/mydjango-line-bot/master/weather/photo/thumbnail_image_1.jpg',
         image_aspect_ratio='rectangle',
         image_size='contain',
         image_background_color='#FFFFFF',
