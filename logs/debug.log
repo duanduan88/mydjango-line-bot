@@ -1,0 +1,109 @@
+INFO Watching for file changes with StatReloader
+INFO hello
+INFO "POST /weather/callback HTTP/1.1" 200 0
+INFO hello
+INFO "POST /weather/callback HTTP/1.1" 200 0
+INFO hello
+INFO "POST /weather/callback HTTP/1.1" 200 0
+INFO C:\Users\Duan\mydjango\mydjango\settings.py changed, reloading.
+INFO 2023-01-06 21:30:01,919 autoreload 22772 20592 Watching for file changes with StatReloader
+INFO 2023-01-06 21:30:14,016 views 22772 6212 hello
+INFO 2023-01-06 21:30:14,166 basehttp 22772 6212 "POST /weather/callback HTTP/1.1" 200 0
+INFO 2023-01-06 21:30:56,194 autoreload 22772 20592 C:\Users\Duan\mydjango\mydjango\settings.py changed, reloading.
+INFO 2023-01-06 21:30:56,553 autoreload Watching for file changes with StatReloader
+INFO 2023-01-06 21:31:19,218 autoreload C:\Users\Duan\mydjango\mydjango\settings.py changed, reloading.
+[INFO] 2023-01-06 21:31:19,560 autoreload Watching for file changes with StatReloader
+[INFO] 2023-01-06 21:31:42,238 autoreload C:\Users\Duan\mydjango\mydjango\settings.py changed, reloading.
+[INFO] [2023-01-06 21:31:42,602] [autoreload] Watching for file changes with StatReloader
+[INFO] [2023-01-06 21:32:11,402] [autoreload] C:\Users\Duan\mydjango\mydjango\settings.py changed, reloading.
+[INFO] [2023-01-06 21:32:11,759] [autoreload] : Watching for file changes with StatReloader
+[INFO] [2023-01-06 21:39:22,143] [autoreload] : C:\Users\Duan\mydjango\mydjango\settings.py changed, reloading.
+[INFO] [2023-01-06 21:41:59] [autoreload] : Watching for file changes with StatReloader
+[INFO] [2023-01-06 21:42:31] [autoreload] : C:\Users\Duan\mydjango\mydjango\settings.py changed, reloading.
+[INFO][2023-01-06 21:42:31][autoreload]: Watching for file changes with StatReloader
+[INFO][2023-01-06 21:42:53][views]: hello
+[INFO][2023-01-06 21:42:53][basehttp]: "POST /weather/callback HTTP/1.1" 200 0
+[INFO][2023-01-06 21:42:53][views]: hello
+[INFO][2023-01-06 21:42:53][basehttp]: "POST /weather/callback HTTP/1.1" 200 0
+[INFO][2023-01-06 21:42:55][views]: hello
+[INFO][2023-01-06 21:42:55][basehttp]: "POST /weather/callback HTTP/1.1" 200 0
+[INFO][2023-01-06 21:42:55][views]: hello
+[INFO][2023-01-06 21:42:55][basehttp]: "POST /weather/callback HTTP/1.1" 200 0
+[INFO][2023-01-06 21:42:55][views]: hello
+[INFO][2023-01-06 21:42:56][basehttp]: "POST /weather/callback HTTP/1.1" 200 0
+[INFO][2023-01-06 21:42:59][views]: hello
+[INFO][2023-01-06 21:42:59][basehttp]: "POST /weather/callback HTTP/1.1" 200 0
+[INFO][2023-01-06 21:42:59][views]: hello
+[INFO][2023-01-06 21:42:59][basehttp]: "POST /weather/callback HTTP/1.1" 200 0
+[INFO][2023-01-06 21:43:01][views]: hello
+[INFO][2023-01-06 21:43:01][basehttp]: "POST /weather/callback HTTP/1.1" 200 0
+[INFO][2023-01-06 21:52:48][autoreload]: C:\Users\Duan\mydjango\weather\views.py changed, reloading.
+[INFO][2023-01-06 21:52:48][autoreload]: Watching for file changes with StatReloader
+[INFO][2023-01-06 21:52:55][views]: hello
+[INFO][2023-01-06 21:52:55][views]: {"destination":"Ubf309e7f0fadd9d6dadad2e394ec8f2b","events":[{"type":"message","message":{"type":"text","id":"17425982356892","text":"123456789"},"webhookEventId":"01GP3NP8BPXMXW60864HZKV804","deliveryContext":{"isRedelivery":false},"timestamp":1673013174311,"source":{"type":"user","userId":"U7148e10040a000482dbeb37e7609dee4"},"replyToken":"2cabaa1341f047f7996d08c7434bfac0","mode":"active"}]}
+[INFO][2023-01-06 21:52:56][basehttp]: "POST /weather/callback HTTP/1.1" 200 0
+[INFO][2023-01-06 21:55:00][autoreload]: C:\Users\Duan\mydjango\weather\views.py changed, reloading.
+[INFO][2023-01-06 21:55:00][autoreload]: Watching for file changes with StatReloader
+[INFO][2023-01-06 21:55:38][autoreload]: C:\Users\Duan\mydjango\weather\views.py changed, reloading.
+[INFO][2023-01-06 21:55:38][autoreload]: Watching for file changes with StatReloader
+[INFO][2023-01-06 21:55:51][views]: Run callback function
+[INFO][2023-01-06 21:55:51][views]: {"destination":"Ubf309e7f0fadd9d6dadad2e394ec8f2b","events":[{"type":"message","message":{"type":"text","id":"17425996509662","text":"123123"},"webhookEventId":"01GP3NVM7C8CF8REG16HN2MJSY","deliveryContext":{"isRedelivery":false},"timestamp":1673013350481,"source":{"type":"user","userId":"U7148e10040a000482dbeb37e7609dee4"},"replyToken":"857183f14a1c47dcb9748f399c8ad0db","mode":"active"}]}
+[INFO][2023-01-06 21:55:52][basehttp]: "POST /weather/callback HTTP/1.1" 200 0
+[INFO][2023-01-06 21:56:40][autoreload]: C:\Users\Duan\mydjango\weather\views.py changed, reloading.
+[INFO][2023-01-06 21:56:40][autoreload]: Watching for file changes with StatReloader
+[INFO][2023-01-06 22:04:43][autoreload]: C:\Users\Duan\mydjango\weather\views.py changed, reloading.
+[INFO][2023-01-06 22:04:44][autoreload]: Watching for file changes with StatReloader
+[INFO][2023-01-06 22:04:52][views]: Run callback function
+[INFO][2023-01-06 22:04:52][views]: {"destination":"Ubf309e7f0fadd9d6dadad2e394ec8f2b","events":[{"type":"message","message":{"type":"text","id":"17426040662691","text":"123"},"webhookEventId":"01GP3PC46SCHV5Q1N2JT11HKF5","deliveryContext":{"isRedelivery":false},"timestamp":1673013890976,"source":{"type":"user","userId":"U7148e10040a000482dbeb37e7609dee4"},"replyToken":"570c14830129404a834ac63ddc382c64","mode":"active"}]}
+[INFO][2023-01-06 22:04:52][basehttp]: "POST /weather/callback HTTP/1.1" 200 0
+[INFO][2023-01-06 22:07:26][autoreload]: C:\Users\Duan\mydjango\weather\views.py changed, reloading.
+[INFO][2023-01-06 22:07:26][autoreload]: Watching for file changes with StatReloader
+[INFO][2023-01-06 22:10:14][autoreload]: C:\Users\Duan\mydjango\weather\views.py changed, reloading.
+[INFO][2023-01-06 22:10:15][autoreload]: Watching for file changes with StatReloader
+[INFO][2023-01-06 22:11:07][autoreload]: C:\Users\Duan\mydjango\mydjango\settings.py changed, reloading.
+[INFO][2023-01-06 22:11:07][autoreload]: Watching for file changes with StatReloader
+[INFO][2023-01-06 22:11:37][autoreload]: C:\Users\Duan\mydjango\weather\views.py changed, reloading.
+[INFO][2023-01-06 22:11:37][autoreload]: Watching for file changes with StatReloader
+[INFO][2023-01-06 22:14:49][autoreload]: C:\Users\Duan\mydjango\weather\views.py changed, reloading.
+[INFO][2023-01-06 22:14:49][autoreload]: Watching for file changes with StatReloader
+[INFO][2023-01-06 22:15:07][autoreload]: C:\Users\Duan\mydjango\weather\views.py changed, reloading.
+[INFO][2023-01-06 22:15:08][autoreload]: Watching for file changes with StatReloader
+[INFO][2023-01-06 22:15:12][views]: Run callback function
+[INFO][2023-01-06 22:15:12][views]: {"destination":"Ubf309e7f0fadd9d6dadad2e394ec8f2b","events":[{"type":"message","message":{"type":"text","id":"17426089603423","text":"456"},"webhookEventId":"01GP3PZ1TFXE40N83E3ND5QJM3","deliveryContext":{"isRedelivery":false},"timestamp":1673014511417,"source":{"type":"user","userId":"U7148e10040a000482dbeb37e7609dee4"},"replyToken":"0d485d320f134dd4974f1d753d2f67e0","mode":"active"}]}
+[ERROR][2023-01-06 22:15:12][log]: Internal Server Error: /weather/callback
+Traceback (most recent call last):
+  File "C:\Users\Duan\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Duan\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Duan\AppData\Local\Programs\Python\Python311\Lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Duan\mydjango\weather\views.py", line 43, in callback
+    line_bot_api.reply_message(
+  File "C:\Users\Duan\AppData\Local\Programs\Python\Python311\Lib\site-packages\linebot\api.py", line 113, in reply_message
+    self._post(
+  File "C:\Users\Duan\AppData\Local\Programs\Python\Python311\Lib\site-packages\linebot\api.py", line 1839, in _post
+    self.__check_error(response)
+  File "C:\Users\Duan\AppData\Local\Programs\Python\Python311\Lib\site-packages\linebot\api.py", line 1875, in __check_error
+    raise LineBotApiError(
+linebot.exceptions.LineBotApiError: LineBotApiError: status_code=400, request_id=8ae73c23-3622-4e85-afbc-3c7dad388486, error_response={"details": [{"message": "Must be one of the following values: [text, image, video, audio, location, sticker, template, imagemap, flex]", "property": "messages[0].type"}], "message": "The request body has 1 error(s)"}, headers={'Content-Type': 'application/json', 'Server': 'envoy', 'x-content-type-options': 'nosniff', 'x-frame-options': 'DENY', 'x-line-request-id': '8ae73c23-3622-4e85-afbc-3c7dad388486', 'x-xss-protection': '1; mode=block', 'Content-Length': '211', 'Expires': 'Fri, 06 Jan 2023 14:15:12 GMT', 'Cache-Control': 'max-age=0, no-cache, no-store', 'Pragma': 'no-cache', 'Date': 'Fri, 06 Jan 2023 14:15:12 GMT', 'Connection': 'close'}
+[ERROR][2023-01-06 22:15:12][basehttp]: "POST /weather/callback HTTP/1.1" 500 92078
+[INFO][2023-01-06 22:17:29][autoreload]: C:\Users\Duan\mydjango\weather\views.py changed, reloading.
+[INFO][2023-01-06 22:17:30][autoreload]: Watching for file changes with StatReloader
+[INFO][2023-01-06 22:17:34][views]: Run callback function
+[INFO][2023-01-06 22:17:34][views]: {"destination":"Ubf309e7f0fadd9d6dadad2e394ec8f2b","events":[{"type":"message","message":{"type":"text","id":"17426100460705","text":"123"},"webhookEventId":"01GP3Q3BV3F8P5GRN2FT4F06CQ","deliveryContext":{"isRedelivery":false},"timestamp":1673014652648,"source":{"type":"user","userId":"U7148e10040a000482dbeb37e7609dee4"},"replyToken":"aaabcd6db8f94037afaa6c8fa852f3d4","mode":"active"}]}
+[INFO][2023-01-06 22:17:34][basehttp]: "POST /weather/callback HTTP/1.1" 200 0
+[INFO][2023-01-06 22:18:16][autoreload]: C:\Users\Duan\mydjango\mydjango\settings.py changed, reloading.
+[INFO][2023-01-06 22:24:53][autoreload]: Watching for file changes with StatReloader
+[INFO][2023-01-06 22:24:57][views]: Run callback function
+[INFO][2023-01-06 22:24:57][views]: {"destination":"Ubf309e7f0fadd9d6dadad2e394ec8f2b","events":[{"type":"message","message":{"type":"text","id":"17426134576289","text":"123"},"webhookEventId":"01GP3QGX543W7HKRE0CVCDQA42","deliveryContext":{"isRedelivery":false},"timestamp":1673015095977,"source":{"type":"user","userId":"U7148e10040a000482dbeb37e7609dee4"},"replyToken":"679a9eb55f654955bb72fb30fa84f7a2","mode":"active"}]}
+[INFO][2023-01-06 22:24:58][basehttp]: "POST /weather/callback HTTP/1.1" 200 0
+[INFO][2023-01-06 22:25:10][views]: Run callback function
+[INFO][2023-01-06 22:25:10][views]: {"destination":"Ubf309e7f0fadd9d6dadad2e394ec8f2b","events":[{"type":"postback","postback":{"data":"action=buy&itemid=1"},"webhookEventId":"01GP3QHA6EFD87YDB4MKF57B2Q","deliveryContext":{"isRedelivery":false},"timestamp":1673015109336,"source":{"type":"user","userId":"U7148e10040a000482dbeb37e7609dee4"},"replyToken":"3faf3a503c0a4211a9c1dedc5ae5cecc","mode":"active"}]}
+[INFO][2023-01-06 22:25:10][basehttp]: "POST /weather/callback HTTP/1.1" 200 0
+[INFO][2023-01-06 22:25:27][views]: Run callback function
+[INFO][2023-01-06 22:25:27][views]: {"destination":"Ubf309e7f0fadd9d6dadad2e394ec8f2b","events":[{"type":"message","message":{"type":"text","id":"17426136889199","text":"123"},"webhookEventId":"01GP3QHTAFG6C6WZADAMFVG60W","deliveryContext":{"isRedelivery":false},"timestamp":1673015125956,"source":{"type":"user","userId":"U7148e10040a000482dbeb37e7609dee4"},"replyToken":"f663ebae8fe44328bd2f04c20f433427","mode":"active"}]}
+[INFO][2023-01-06 22:25:27][basehttp]: "POST /weather/callback HTTP/1.1" 200 0
