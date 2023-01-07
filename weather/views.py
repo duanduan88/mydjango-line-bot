@@ -9,6 +9,7 @@ from linebot.models import *
 
 import logging
 import json
+import requests
 
 logger = logging.getLogger('django')
 
@@ -30,6 +31,7 @@ def callback(request):
         body = request.body.decode('utf-8')
         logger.info('Run callback function')
         logger.info(body)
+
         try:
             events = parser.parse(body, signature)  # 傳入的事件
             handle_message(events)
@@ -41,6 +43,33 @@ def callback(request):
         return HttpResponse()
     else:
         return HttpResponseBadRequest()
+
+
+cities = ['基隆市', '嘉義市', '臺北市', '嘉義縣', '新北市', '臺南市', '桃園縣', '高雄市', '新竹市', '屏東縣',
+          '新竹縣', '臺東縣', '苗栗縣', '花蓮縣', '臺中市', '宜蘭縣', '彰化縣', '澎湖縣', '南投縣', '金門縣', '雲林縣', '連江縣']
+
+
+def get(city):
+    token = 'CWB-B263AE2A-FD0C-4A62-9D1F-35B8590E583B'
+    url = 'https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=' + \
+        token + '&format=JSON&locationName=' + str(city)
+    Data = requests.get(url)
+    Data = (json.loads(Data.text)
+            )['records']['location'][0]['weatherElement']
+    logger.info(Data)
+    res = [[], [], []]
+    for j in range(3):
+        for i in Data:
+            res[j].append(i['time'][j])
+    logger.info(res)
+    if res[0][0]['startTime'][11:-3] == "18:00":
+        starttime = "傍晚"
+        endtime = "清晨"
+    else:
+        starttime = "清晨"
+        endtime = "傍晚"
+    logger.info(res)
+    return res, starttime, endtime
 
 
 def handle_message(events):
@@ -63,6 +92,74 @@ def handle_message(events):
                     )
                 case _:
                     logger.info('No revelant response')
+
+            if event.message.text[:2] == "天氣":
+                city = event.message.text[3:]
+                city = city.replace('台', '臺')
+                logger.info(city)
+                if (not (city in cities)):
+                    line_bot_api.reply_message(
+                        event.reply_token, TextSendMessage(text="查詢格式為: 天氣 縣市"))
+                else:
+                    res, starttime, endtime = get(city)
+                    logger.info(res)
+                    line_bot_api.reply_message(event.reply_token, TemplateSendMessage(
+                        alt_text=city + '未來 36 小時天氣預測',
+                        template=CarouselTemplate(
+                            columns=[
+                                CarouselColumn(
+                                    thumbnail_image_url='https://cdn-icons-png.flaticon.com/512/2272/2272221.png',
+                                    imageSize='contain',
+                                    title='{} {} ~ {} {}'.format(
+                                        res[0][0]['startTime'][5:-9], starttime, res[0][0]['endTime'][5:-9], endtime),
+
+                                    text='天氣狀況 {}\n溫度 {} ~ {} °C\n降雨機率 {}'.format(
+                                        res[0][0]['parameter']['parameterName'], res[0][2]['parameter']['parameterName'], res[0][4]['parameter']['parameterName'], res[0][1]['parameter']['parameterName']),
+                                    actions=[
+                                        URIAction(
+                                            label='詳細內容',
+                                            uri='https://www.cwb.gov.tw/V8/C/W/County/index.html'
+                                        )
+                                    ]
+                                ),
+                                CarouselColumn(
+                                    thumbnail_image_url='https://cdn-icons-png.flaticon.com/512/2272/2272221.png',
+                                    title='{} {} ~ {} {}'.format(
+                                        res[1][0]['startTime'][5:-9], endtime, res[1][0]['endTime'][5:-9], starttime),
+
+                                    text='天氣狀況 {}\n溫度 {} ~ {} °C\n降雨機率 {}'.format(
+                                        res[1][0]['parameter']['parameterName'], res[1][2]['parameter']['parameterName'], res[1][4]['parameter']['parameterName'], res[1][1]['parameter']['parameterName']),
+                                    actions=[
+                                        URIAction(
+                                            label='詳細內容',
+                                            uri='https://www.cwb.gov.tw/V8/C/W/County/index.html'
+                                        )
+                                    ]
+                                ),
+                                CarouselColumn(
+                                    thumbnail_image_url='https://cdn-icons-png.flaticon.com/512/2272/2272221.png',
+                                    title='{} {} ~ {} {}'.format(
+                                        res[2][0]['startTime'][5:-9], starttime, res[2][0]['endTime'][5:-9], endtime),
+
+                                    text='天氣狀況 {}\n溫度 {} ~ {} °C\n降雨機率 {}'.format(
+                                        res[2][0]['parameter']['parameterName'], res[2][2]['parameter']['parameterName'], res[2][4]['parameter']['parameterName'], res[2][1]['parameter']['parameterName']),
+                                    actions=[
+                                        URIAction(
+                                            label='詳細內容',
+                                            uri='https://www.cwb.gov.tw/V8/C/W/County/index.html'
+                                        )
+                                    ]
+                                ),
+                            ]
+                        )
+                    ))
+                    logger.info("check")
+                    logger.info(res[0][0])
+                    logger.info(res[0][1])
+                    logger.info(res[0][2])
+            else:
+                line_bot_api.reply_message(
+                    event.reply_token, TextSendMessage(text=event.message.text))
 
 
 TemplateSendMessage(
