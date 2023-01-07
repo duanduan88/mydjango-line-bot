@@ -8,6 +8,8 @@ from linebot.exceptions import InvalidSignatureError, LineBotApiError
 from linebot.models import *
 
 import logging
+import json
+
 logger = logging.getLogger('django')
 
 line_bot_api = LineBotApi(settings.LINE_CHANNEL_ACCESS_TOKEN)
@@ -28,25 +30,39 @@ def callback(request):
         body = request.body.decode('utf-8')
         logger.info('Run callback function')
         logger.info(body)
-        print(body)
         try:
             events = parser.parse(body, signature)  # 傳入的事件
-
+            handle_message(events)
+            print(HttpResponse())
         except InvalidSignatureError:
             return HttpResponseForbidden()
         except LineBotApiError:
             return HttpResponseBadRequest()
-
-        for event in events:
-            if isinstance(event, MessageEvent):
-                print(event.message.type)
-                line_bot_api.reply_message(
-                    event.reply_token, buttons_template_message
-                )
-
-            return HttpResponse()
+        return HttpResponse()
     else:
         return HttpResponseBadRequest()
+
+
+def handle_message(events):
+    logger.info('Run handle_message function')
+    logger.info(events)
+    for event in events:
+        if isinstance(event, MessageEvent):
+            match event.message.text:
+                case "123":
+                    FlexMessage = json.load(
+                        open('weather\json\example.json', 'r', encoding='utf-8'))
+                    line_bot_api.reply_message(
+                        event.reply_token, FlexSendMessage(
+                            'profile', FlexMessage)
+                    )
+                case "456":
+                    logger.info(event.message.type)
+                    line_bot_api.reply_message(
+                        event.reply_token, buttons_template_message
+                    )
+                case _:
+                    logger.info('No revelant response')
 
 
 TemplateSendMessage(
@@ -71,6 +87,11 @@ TemplateSendMessage(
     )
 )
 
+message_action = MessageTemplateAction(
+    type="message",
+    label="Yes",
+    text="Yes"
+)
 
 buttons_template_message = TemplateSendMessage(
     alt_text='Buttons template',
