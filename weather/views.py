@@ -29,9 +29,11 @@ def callback(request):
         logger.info(body)
 
         try:
-            events = parser.parse(body, signature)  # 傳入的事件
+            # Receive the event
+            events = parser.parse(body, signature)
             handle_message(events)
             print(HttpResponse())
+
         except InvalidSignatureError:
             return HttpResponseForbidden()
         except LineBotApiError:
@@ -40,44 +42,50 @@ def callback(request):
     else:
         return HttpResponseBadRequest()
 
+# handle all message and decide to reply what sentance
+
 
 def handle_message(events):
     logger.info('Run handle_message function')
     logger.info(events)
     for event in events:
         if isinstance(event, MessageEvent):
-            message_location = event.message.address
             reply_token = event.reply_token
-            message_type = event.message.type
-            if (message_type == 'location'):
+
+            # Message type == location
+            if (event.message.type == 'location'):
+                message_location = event.message.address
                 logger.info('match Weather with current location')
-                Weather_with_location(message_location, reply_token)
-            else:
+                Weather_search_with_location(message_location, reply_token)
+
+            # Message type == text
+            elif (event.message.type == 'text'):
                 message = event.message.text
-                match message:
-                    case "123":
-                        logger.info('match 123')
-                        FlexMessage = json.load(
-                            open('weather\json\example.json', 'r', encoding='utf-8'))
-                        line_bot_api.reply_message(
-                            reply_token, FlexSendMessage(
-                                'profile', FlexMessage)
-                        )
-                    case "456":
-                        logger.info(event.message.type)
-                        line_bot_api.reply_message(
-                            reply_token, buttons_template_message
-                        )
-                    case _:
-                        logger.info('No revelant response')
-                        line_bot_api.reply_message(
-                            reply_token, TextSendMessage(text='沒有這個指令')
-                        )
-                if message[:2] == "天氣":
+                if (message[:2] == "天氣"):
                     logger.info('match Weather')
-                    Weather_2(message, reply_token)
+                    Weather_search(message, reply_token)
+
+                elif (message == "123"):
+                    logger.info('match 123')
+                    FlexMessage = json.load(
+                        open('weather\json\example.json', 'r', encoding='utf-8'))
+                    line_bot_api.reply_message(
+                        reply_token, FlexSendMessage(
+                            'profile', FlexMessage)
+                    )
+                elif (message == "456"):
+                    logger.info(event.message.type)
+                    line_bot_api.reply_message(
+                        reply_token, buttons_template_message
+                    )
+                else:
+                    logger.info('No revelant response')
+                    line_bot_api.reply_message(
+                        reply_token, TextSendMessage(text='沒有這個指令')
+                    )
 
 
+'''
 def Get_weather_info(city):
     token = 'CWB-B263AE2A-FD0C-4A62-9D1F-35B8590E583B'
     url = 'https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=' + \
@@ -99,65 +107,78 @@ def Get_weather_info(city):
         endtime = "傍晚"
     logger.info(res)
     return res, starttime, endtime
+'''
 
 
-def Get_weather_info_2(city):
+def Get_weather(city):
+    # token from 中央氣象局
     token = 'CWB-B263AE2A-FD0C-4A62-9D1F-35B8590E583B'
     url = 'https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=' + \
         token + '&format=JSON&locationName=' + str(city)
+    # Get request from url
     Data = requests.get(url)
+    # Get specific data from url
     Data = (json.loads(Data.text))['records']['location'][0]['weatherElement']
+    # Temp.json is blank and for adding the data in it
     weather_msg = json.load(
         open('weather\json\Temp.json', 'r', encoding='utf-8'))
     logger.info(Data)
     logger.info(weather_msg)
+    # Catch weather info of 3 timing, e.g. 18:00-06:00
     for j in range(3):
-        bubble = json.load(
+        template = json.load(
             open('weather\json\Template_weather_info.json', 'r', encoding='utf-8'))
 
         # title
-        bubble['body']['contents'][0]['text'] = city + '未來 36 小時天氣'
+        template['body']['contents'][0]['text'] = city + '未來 36 小時天氣'
         # time
-        bubble['body']['contents'][1]['contents'][0]['text'] = '{} ~ {}'.format(
+        template['body']['contents'][1]['contents'][0]['text'] = '{} ~ {}'.format(
             Data[0]['time'][j]['startTime'][5:-3], Data[0]['time'][j]['endTime'][5:-3])
         # weather
-        bubble['body']['contents'][3]['contents'][1]['contents'][1]['text'] = Data[0]['time'][j]['parameter']['parameterName']
+        template['body']['contents'][3]['contents'][1]['contents'][1]['text'] = Data[0]['time'][j]['parameter']['parameterName']
         # temp
-        bubble['body']['contents'][3]['contents'][2]['contents'][1]['text'] = '{}°C ~ {}°C'.format(
+        template['body']['contents'][3]['contents'][2]['contents'][1]['text'] = '{}°C ~ {}°C'.format(
             Data[2]['time'][j]['parameter']['parameterName'], Data[4]['time'][j]['parameter']['parameterName'])
         # rain
-        bubble['body']['contents'][3]['contents'][1]['contents'][1]['text'] = '{}%'.format(
+        template['body']['contents'][3]['contents'][1]['contents'][1]['text'] = '{}%'.format(
             Data[1]['time'][j]['parameter']['parameterName'])
         # comfort
-        bubble['body']['contents'][3]['contents'][3]['contents'][1]['text'] = Data[3]['time'][j]['parameter']['parameterName']
-
-        weather_msg['contents'].append(bubble)
+        template['body']['contents'][3]['contents'][3]['contents'][1]['text'] = Data[3]['time'][j]['parameter']['parameterName']
+        # Fill all 3 info in weather_msg by using template
+        weather_msg['contents'].append(template)
         logger.info(weather_msg)
     return weather_msg
 
 
-def Weather_with_location(message_location, reply_token):
+def Weather_search_with_location(message_location, reply_token):
+    logger.info('Run Weather_search_with_location')
+    # Get location by event.message.address
     city = message_location[5:8].replace('台', '臺')
     logger.info(city)
-    weather_msg = Get_weather_info_2(city)
+    # Go to get weather info
+    weather_msg = Get_weather(city)
     line_bot_api.reply_message(
         reply_token, FlexSendMessage(city + '未來 36 小時天氣預測', weather_msg))
 
 
-def Weather_2(message, reply_token):
+def Weather_search(message, reply_token):
+    logger.info('Run Weather_search')
     city = message[3:]
     city = city.replace('台', '臺')
     logger.info(city)
+    # Make sure formatt is correct
     if (not (city in cities)):
         line_bot_api.reply_message(
             reply_token, TextSendMessage(text="查詢格式為: 天氣 縣市"))
     else:
-        weather_msg = Get_weather_info_2(city)
+        # Go to get weather info
+        weather_msg = Get_weather(city)
         logger.info(weather_msg)
         line_bot_api.reply_message(
             reply_token, FlexSendMessage(city + '未來 36 小時天氣預測', weather_msg))
 
 
+'''
 def Weather(message, reply_token):
     city = message[3:]
     city = city.replace('台', '臺')
@@ -218,7 +239,7 @@ def Weather(message, reply_token):
                 ]
             )
         ))
-
+'''
 
 buttons_template_message = TemplateSendMessage(
     alt_text='Buttons template',

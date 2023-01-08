@@ -28,7 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'line-bot-service.onrender.com',
-    'cc2c-2407-4d00-2c04-8675-e531-778d-54c4-60a2.jp.ngrok.io'
+    'e8bf-2407-4d00-2c04-8675-3cdd-10e9-b95d-480e.jp.ngrok.io'
 ]
 
 LINE_CHANNEL_ACCESS_TOKEN = 'SgHN7Et5+RrfeOf34PQdRaejyKeE87ZeqmEal82HoeYayv95AUg1GXUbHj0ZYvaGsXnhZzm3u9XstJ6tUzeaExV7Qa0HDqIYlGa9zMMd9uGl2joK+LleCigxDYyO14RGObj2BrbAvlDKg4XWpjAMtQdB04t89/1O/w1cDnyilFU='
