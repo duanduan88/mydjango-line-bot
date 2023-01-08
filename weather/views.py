@@ -14,8 +14,10 @@ import requests
 logger = logging.getLogger('django')
 line_bot_api = LineBotApi(settings.LINE_CHANNEL_ACCESS_TOKEN)
 parser = WebhookParser(settings.LINE_CHANNEL_SECRET)
-cities = ['基隆市', '嘉義市', '臺北市', '嘉義縣', '新北市', '臺南市', '桃園縣', '高雄市', '新竹市', '屏東縣',
+cities = ['基隆市', '嘉義市', '臺北市', '嘉義縣', '新北市', '臺南市', '桃園市', '高雄市', '新竹市', '屏東縣',
           '新竹縣', '臺東縣', '苗栗縣', '花蓮縣', '臺中市', '宜蘭縣', '彰化縣', '澎湖縣', '南投縣', '金門縣', '雲林縣', '連江縣']
+date_content_18_06 = ['今晚明晨', '明日白天', '明日傍晚']
+date_content_06_18 = ['今日白天', '今日傍晚', '明日白天']
 # Create your views here.
 # ngrok config add-authtoken 2JapAZA8dxnS1mRFXWxCpD6ZIN2_5DUeLnsjiuEGvP5BeHUot
 
@@ -117,6 +119,8 @@ def Get_weather(city):
         token + '&format=JSON&locationName=' + str(city)
     # Get request from url
     Data = requests.get(url)
+    data_test = (json.loads(Data.text))
+    logger.info(data_test)
     # Get specific data from url
     Data = (json.loads(Data.text))['records']['location'][0]['weatherElement']
     # Temp.json is blank and for adding the data in it
@@ -124,29 +128,38 @@ def Get_weather(city):
         open('weather\json\Temp.json', 'r', encoding='utf-8'))
     logger.info(Data)
     logger.info(weather_msg)
+
     # Catch weather info of 3 timing, e.g. 18:00-06:00
     for j in range(3):
         template = json.load(
             open('weather\json\Template_weather_info.json', 'r', encoding='utf-8'))
 
         # title
-        template['body']['contents'][0]['text'] = city + '未來 36 小時天氣'
+        template['body']['contents'][0]['text'] = city
         # time
-        template['body']['contents'][1]['contents'][0]['text'] = '{} ~ {}'.format(
-            Data[0]['time'][j]['startTime'][5:-3], Data[0]['time'][j]['endTime'][5:-3])
-        # weather
-        template['body']['contents'][3]['contents'][1]['contents'][1]['text'] = Data[0]['time'][j]['parameter']['parameterName']
+        template['body']['contents'][2]['text'] = '{} ~ {}'.format(
+            Data[0]['time'][j]['startTime'][11:-3], Data[0]['time'][j]['endTime'][11:-3]).replace('-', '/')
         # temp
-        template['body']['contents'][3]['contents'][2]['contents'][1]['text'] = '{}°C ~ {}°C'.format(
+        template['body']['contents'][4]['text'] = '{}°C ~ {}°C'.format(
             Data[2]['time'][j]['parameter']['parameterName'], Data[4]['time'][j]['parameter']['parameterName'])
         # rain
-        template['body']['contents'][3]['contents'][1]['contents'][1]['text'] = '{}%'.format(
+        template['body']['contents'][5]['contents'][1]['text'] = '{}%'.format(
             Data[1]['time'][j]['parameter']['parameterName'])
-        # comfort
-        template['body']['contents'][3]['contents'][3]['contents'][1]['text'] = Data[3]['time'][j]['parameter']['parameterName']
         # Fill all 3 info in weather_msg by using template
         weather_msg['contents'].append(template)
-        logger.info(weather_msg)
+
+    # See now timing and decide to display which content
+    if (weather_msg['contents'][0]['body']['contents'][2]['text'][8:] == "06:00"):
+        logger.info('Now time is 18:00 ~ 06:00')
+        for i in range(3):
+            weather_msg['contents'][i]['body']['contents'][1]['text'] = date_content_18_06[i]
+            logger.info(weather_msg)
+    else:
+        logger.info('Now time is 06:00 ~ 18:00')
+        for m in range(3):
+            weather_msg['contents'][m]['body']['contents'][1]['text'] = date_content_06_18[m]
+            logger.info(weather_msg)
+
     return weather_msg
 
 
@@ -176,6 +189,14 @@ def Weather_search(message, reply_token):
         logger.info(weather_msg)
         line_bot_api.reply_message(
             reply_token, FlexSendMessage(city + '未來 36 小時天氣預測', weather_msg))
+
+
+def GetWeatherIcon():
+    url = 'https://www.cwb.gov.tw/Data/js/WeatherIcon.js?_=1673188068816'
+    # Get request from url
+    icon_data = requests.get(url)
+    data_test = (json.loads(icon_data.text))
+    logger.info(data_test)
 
 
 '''

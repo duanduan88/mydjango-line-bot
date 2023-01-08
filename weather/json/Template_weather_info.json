@@ -1,158 +1,68 @@
 {
     "type": "bubble",
-    "hero": {
-        "type": "image",
-        "url": "https://cdn-icons-png.flaticon.com/512/1163/1163661.png",
-        "size": "full",
-        "aspectRatio": "20:13",
-        "aspectMode": "fit",
-        "action": {
-            "type": "uri",
-            "uri": "http://linecorp.com/"
-        },
-        "position": "relative",
-        "margin": "none",
-        "offsetTop": "none",
-        "offsetBottom": "none",
-        "offsetStart": "none"
-    },
     "body": {
         "type": "box",
         "layout": "vertical",
         "contents": [
             {
                 "type": "text",
-                "text": "{縣市}未來 36 小時天氣",
+                "text": "台北市",
+                "size": "40px",
                 "weight": "bold",
+                "align": "center",
+                "margin": "lg"
+            },
+            {
+                "type": "text",
+                "text": "今晚明晨",
+                "size": "lg",
+                "weight": "bold",
+                "align": "center",
+                "margin": "lg"
+            },
+            {
+                "type": "text",
+                "text": "18:00 ~ 06:00",
+                "size": "lg",
+                "weight": "bold",
+                "align": "center"
+            },
+            {
+                "type": "image",
+                "url": "https://cdn-icons-png.flaticon.com/512/1163/1163661.png",
                 "size": "xl",
-                "margin": "none",
-                "style": "normal",
-                "decoration": "none",
-                "position": "relative",
-                "align": "start"
+                "offsetTop": "none",
+                "margin": "xxl"
+            },
+            {
+                "type": "text",
+                "text": "15°C ~ 20°C",
+                "size": "30px",
+                "weight": "bold",
+                "align": "center",
+                "margin": "30px"
             },
             {
                 "type": "box",
-                "layout": "baseline",
-                "margin": "md",
+                "layout": "horizontal",
                 "contents": [
+                    {
+                        "type": "image",
+                        "url": "https://cdn-icons-png.flaticon.com/512/561/561880.png",
+                        "size": "20px",
+                        "align": "end",
+                        "offsetEnd": "sm",
+                        "gravity": "center"
+                    },
                     {
                         "type": "text",
-                        "text": "1/8 18:00 ~ 1/9 06:00",
-                        "size": "lg",
-                        "color": "#999999",
-                        "margin": "none",
-                        "flex": 0,
-                        "offsetBottom": "none",
-                        "offsetTop": "none"
+                        "text": "10%",
+                        "weight": "bold",
+                        "offsetStart": "xs",
+                        "size": "21px"
                     }
-                ]
-            },
-            {
-                "type": "separator",
-                "margin": "md"
-            },
-            {
-                "type": "box",
-                "layout": "vertical",
-                "margin": "lg",
-                "spacing": "sm",
-                "contents": [
-                    {
-                        "type": "box",
-                        "layout": "horizontal",
-                        "spacing": "sm",
-                        "contents": [
-                            {
-                                "type": "text",
-                                "text": "天氣狀況",
-                                "color": "#04d115",
-                                "size": "sm",
-                                "flex": 2,
-                                "position": "relative",
-                                "decoration": "none"
-                            },
-                            {
-                                "type": "text",
-                                "text": "多雲",
-                                "wrap": true,
-                                "color": "#666666",
-                                "size": "sm",
-                                "flex": 3,
-                                "weight": "bold"
-                            }
-                        ]
-                    },
-                    {
-                        "type": "box",
-                        "layout": "horizontal",
-                        "spacing": "sm",
-                        "contents": [
-                            {
-                                "type": "text",
-                                "text": "降雨機率",
-                                "color": "#04d115",
-                                "size": "sm",
-                                "flex": 2
-                            },
-                            {
-                                "type": "text",
-                                "text": "10%",
-                                "wrap": true,
-                                "color": "#666666",
-                                "size": "sm",
-                                "flex": 3,
-                                "weight": "bold"
-                            }
-                        ]
-                    },
-                    {
-                        "type": "box",
-                        "layout": "horizontal",
-                        "spacing": "sm",
-                        "contents": [
-                            {
-                                "type": "text",
-                                "text": "溫度",
-                                "color": "#04d115",
-                                "size": "sm",
-                                "flex": 2
-                            },
-                            {
-                                "type": "text",
-                                "text": "15°C ~ 20°C",
-                                "wrap": true,
-                                "color": "#666666",
-                                "size": "sm",
-                                "flex": 3,
-                                "weight": "bold"
-                            }
-                        ]
-                    },
-                    {
-                        "type": "box",
-                        "layout": "horizontal",
-                        "spacing": "sm",
-                        "contents": [
-                            {
-                                "type": "text",
-                                "text": "舒適度",
-                                "color": "#04d115",
-                                "size": "sm",
-                                "flex": 2
-                            },
-                            {
-                                "type": "text",
-                                "text": "舒適",
-                                "wrap": true,
-                                "color": "#666666",
-                                "size": "sm",
-                                "flex": 3,
-                                "weight": "bold"
-                            }
-                        ]
-                    }
-                ]
+                ],
+                "margin": "10px"
             }
         ]
     },
