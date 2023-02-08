@@ -18,8 +18,6 @@ cities = ['基隆市', '嘉義市', '臺北市', '嘉義縣', '新北市', '臺�
           '新竹縣', '臺東縣', '苗栗縣', '花蓮縣', '臺中市', '宜蘭縣', '彰化縣', '澎湖縣', '南投縣', '金門縣', '雲林縣', '連江縣']
 date_content_18_06 = ['今晚明晨', '明日白天', '明日傍晚']
 date_content_06_18 = ['今日白天', '今日傍晚', '明日白天']
-# Create your views here.
-# ngrok config add-authtoken 2JapAZA8dxnS1mRFXWxCpD6ZIN2_5DUeLnsjiuEGvP5BeHUot
 
 
 @csrf_exempt
@@ -132,32 +130,42 @@ def Get_weather(city):
     # Catch weather info of 3 timing, e.g. 18:00-06:00
     for j in range(3):
         template = json.load(
-            open('weather\json\Template_weather_info.json', 'r', encoding='utf-8'))
+            open('weather\json\Template_weather_more_info.json', 'r', encoding='utf-8'))
 
-        # title
-        template['body']['contents'][0]['text'] = city
+        # city
+        template['body']['contents'][1]['text'] = city
         # time
-        template['body']['contents'][2]['text'] = '{} ~ {}'.format(
-            Data[0]['time'][j]['startTime'][11:-3], Data[0]['time'][j]['endTime'][11:-3]).replace('-', '/')
+        # template['body']['contents'][2]['text'] = '{} ~ {}'.format(
+        #     Data[0]['time'][j]['startTime'][11:-3], Data[0]['time'][j]['endTime'][11:-3]).replace('-', '/')
         # temp
-        template['body']['contents'][4]['text'] = '{}°C ~ {}°C'.format(
+        template['body']['contents'][2]['text'] = '{}°C ~ {}°C'.format(
             Data[2]['time'][j]['parameter']['parameterName'], Data[4]['time'][j]['parameter']['parameterName'])
-        # rain
-        template['body']['contents'][5]['contents'][1]['text'] = '{}%'.format(
+        # weather condition
+        template['body']['contents'][4]['contents'][0]['contents'][1]['text'] = '{}'.format(
+            Data[0]['time'][j]['parameter']['parameterName'])
+        # rain rate
+        template['body']['contents'][4]['contents'][1]['contents'][1]['text'] = '{}%'.format(
             Data[1]['time'][j]['parameter']['parameterName'])
+        # temp 2
+        template['body']['contents'][4]['contents'][2]['contents'][1]['text'] = '{}°C ~ {}°C'.format(
+            Data[2]['time'][j]['parameter']['parameterName'], Data[4]['time'][j]['parameter']['parameterName'])
+        # comfortable
+        template['body']['contents'][4]['contents'][3]['contents'][1]['text'] = '{}'.format(
+            Data[3]['time'][j]['parameter']['parameterName'])
         # Fill all 3 info in weather_msg by using template
         weather_msg['contents'].append(template)
+        logger.info(Data[0]['time'][0]['startTime'][11:])
 
     # See now timing and decide to display which content
-    if (weather_msg['contents'][0]['body']['contents'][2]['text'][8:] == "06:00"):
+    if (Data[0]['time'][0]['startTime'][11:] == "18:00:00" or Data[0]['time'][0]['startTime'][11:] == "00:00:00"):
         logger.info('Now time is 18:00 ~ 06:00')
         for i in range(3):
-            weather_msg['contents'][i]['body']['contents'][1]['text'] = date_content_18_06[i]
+            weather_msg['contents'][i]['body']['contents'][0]['text'] = date_content_18_06[i]
             logger.info(weather_msg)
     else:
         logger.info('Now time is 06:00 ~ 18:00')
         for m in range(3):
-            weather_msg['contents'][m]['body']['contents'][1]['text'] = date_content_06_18[m]
+            weather_msg['contents'][m]['body']['contents'][0]['text'] = date_content_06_18[m]
             logger.info(weather_msg)
 
     return weather_msg
@@ -191,12 +199,14 @@ def Weather_search(message, reply_token):
             reply_token, FlexSendMessage(city + '未來 36 小時天氣預測', weather_msg))
 
 
+'''
 def GetWeatherIcon():
     url = 'https://www.cwb.gov.tw/Data/js/WeatherIcon.js?_=1673188068816'
     # Get request from url
     icon_data = requests.get(url)
     data_test = (json.loads(icon_data.text))
     logger.info(data_test)
+'''
 
 
 '''
