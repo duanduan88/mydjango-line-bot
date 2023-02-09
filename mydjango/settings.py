@@ -27,8 +27,9 @@ SECRET_KEY = 'django-insecure-q@_&ph+tl_n+#(@ncx7m^6*#-&-^g+)0gge)%j()x#3=^4!y%@
 DEBUG = True
 
 ALLOWED_HOSTS = [
+    '.vercel.app',
     'line-bot-service.onrender.com',
-    '2bf8-2407-4d00-2c04-8675-a535-a263-47a5-937e.jp.ngrok.io'
+    'cdd9-2407-4d00-2c04-8675-ac8c-7104-b346-f138.jp.ngrok.io'
 ]
 
 LINE_CHANNEL_ACCESS_TOKEN = 'SgHN7Et5+RrfeOf34PQdRaejyKeE87ZeqmEal82HoeYayv95AUg1GXUbHj0ZYvaGsXnhZzm3u9XstJ6tUzeaExV7Qa0HDqIYlGa9zMMd9uGl2joK+LleCigxDYyO14RGObj2BrbAvlDKg4XWpjAMtQdB04t89/1O/w1cDnyilFU='

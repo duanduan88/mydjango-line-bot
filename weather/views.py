@@ -73,11 +73,6 @@ def handle_message(events):
                         reply_token, FlexSendMessage(
                             'profile', FlexMessage)
                     )
-                elif (message == "456"):
-                    logger.info(event.message.type)
-                    line_bot_api.reply_message(
-                        reply_token, buttons_template_message
-                    )
                 else:
                     logger.info('No revelant response')
                     line_bot_api.reply_message(
@@ -146,7 +141,7 @@ def Get_weather(city):
         # rain rate
         template['body']['contents'][4]['contents'][1]['contents'][1]['text'] = '{}%'.format(
             Data[1]['time'][j]['parameter']['parameterName'])
-        # temp 2
+        # temp in box
         template['body']['contents'][4]['contents'][2]['contents'][1]['text'] = '{}°C ~ {}°C'.format(
             Data[2]['time'][j]['parameter']['parameterName'], Data[4]['time'][j]['parameter']['parameterName'])
         # comfortable
@@ -271,7 +266,7 @@ def Weather(message, reply_token):
             )
         ))
 '''
-
+'''
 buttons_template_message = TemplateSendMessage(
     alt_text='Buttons template',
     template=ButtonsTemplate(
@@ -305,3 +300,4 @@ buttons_template_message = TemplateSendMessage(
         ]
     )
 )
+'''
